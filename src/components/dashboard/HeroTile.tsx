@@ -70,6 +70,7 @@ export function HeroTile() {
             src="/hero-graphic.png" 
             alt="Futuristic Learning Matrix Graphic" 
             fill 
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-contain mix-blend-screen"
             priority
           />

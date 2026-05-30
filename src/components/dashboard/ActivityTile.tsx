@@ -117,12 +117,11 @@ export function ActivityTile() {
             }
 
             return (
-              <motion.div
+              <div
                 key={i}
-                onHoverStart={() => setHoveredCell(i)}
-                onHoverEnd={() => setHoveredCell(null)}
-                whileHover={{ scale: 1.4, zIndex: 10 }}
-                className={`w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 rounded-[4px] ${bgColor} ${hoverColor} transition-all duration-300 cursor-crosshair border border-white/5 relative`}
+                onMouseEnter={() => setHoveredCell(i)}
+                onMouseLeave={() => setHoveredCell(null)}
+                className={`w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 rounded-[4px] ${bgColor} ${hoverColor} transition-all duration-300 cursor-crosshair border border-white/5 relative hover:scale-[1.4] hover:z-10`}
               >
                 <AnimatePresence>
                   {hoveredCell === i && (
@@ -137,7 +136,7 @@ export function ActivityTile() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
         </motion.div>
