@@ -4,17 +4,22 @@ import { Skeleton } from "@/components/ui/Skeleton";
 export default function Loading() {
   return (
     <DashboardShell>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+      <div className="flex flex-col space-y-8 w-full">
         {/* Hero Tile Skeleton */}
-        <Skeleton className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 lg:row-span-2 rounded-3xl min-h-[380px]" />
+        <Skeleton className="w-full rounded-3xl h-[380px]" />
         
-        {/* Course Card Skeletons */}
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton key={i} className="col-span-1 row-span-1 rounded-3xl min-h-[180px]" />
-        ))}
+        {/* Courses Section Skeleton */}
+        <div className="w-full">
+          <Skeleton className="w-32 h-6 mb-4 rounded-md" />
+          <div className="flex gap-4 overflow-hidden py-4 px-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className="w-[300px] h-[180px] shrink-0 rounded-3xl" />
+            ))}
+          </div>
+        </div>
         
         {/* Activity Tile Skeleton */}
-        <Skeleton className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 rounded-3xl min-h-[220px]" />
+        <Skeleton className="w-full rounded-3xl h-[220px]" />
       </div>
     </DashboardShell>
   );

@@ -24,12 +24,10 @@ export function CourseCard({ course }: CourseCardProps) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       tabIndex={0}
       aria-label={`Course: ${course.title}, ${course.progress}% completed`}
-      className="col-span-1 row-span-1 glass-panel p-6 flex flex-col justify-between group relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]"
+      className="w-[300px] h-[180px] shrink-0 glass-panel p-6 flex flex-col justify-between group relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff] rounded-3xl"
     >
-      {/* Background mesh gradient transition */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {/* Glowing border effect on hover */}
       <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-[#00f0ff]/30 transition-colors duration-500" />
 
       <div className="relative z-10 flex items-center justify-between mb-4">

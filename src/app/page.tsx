@@ -2,19 +2,16 @@ import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { Course } from "@/types/course";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
-import { BentoGrid } from "@/components/dashboard/BentoGrid";
 import { HeroTile } from "@/components/dashboard/HeroTile";
-import { CourseCard } from "@/components/dashboard/CourseCard";
+import { CourseMarquee } from "@/components/dashboard/CourseMarquee";
 import { ActivityTile } from "@/components/dashboard/ActivityTile";
 import { Skeleton } from "@/components/ui/Skeleton";
 
 export const revalidate = 0; // Dynamic route
 
-async function CoursesList() {
+async function CoursesSection() {
   const supabase = await createClient();
   
-  // Try to fetch courses, if it fails due to no credentials, return mock data
-  // so the UI can still be rendered for demonstration purposes.
   let courses: Course[] | null = null;
   let error = null;
   
@@ -30,7 +27,6 @@ async function CoursesList() {
     console.error("Supabase connection error:", err);
   }
 
-  // Fallback to mock data if there's an error (e.g., Supabase not configured yet)
   if (error) {
     console.error("Supabase returned an error:", error);
   }
@@ -44,32 +40,35 @@ async function CoursesList() {
     ];
   }
 
-  return (
-    <>
-      {courses.map((course) => (
-        <CourseCard key={course.id} course={course} />
-      ))}
-    </>
-  );
+  return <CourseMarquee courses={courses} />;
 }
 
 export default function DashboardPage() {
   return (
     <DashboardShell>
-      <BentoGrid>
-        <HeroTile />
-        <Suspense fallback={
-          <>
-            <Skeleton className="h-[200px]" />
-            <Skeleton className="h-[200px]" />
-            <Skeleton className="h-[200px]" />
-            <Skeleton className="h-[200px]" />
-          </>
-        }>
-          <CoursesList />
-        </Suspense>
-        <ActivityTile />
-      </BentoGrid>
+      <div className="flex flex-col space-y-8 w-full">
+        <section>
+          <HeroTile />
+        </section>
+
+        <section className="w-full">
+          <h2 className="text-xl font-bold text-white mb-2 px-2">Your Courses</h2>
+          <Suspense fallback={
+            <div className="flex gap-4 overflow-hidden py-4 px-2">
+              <Skeleton className="w-[300px] h-[180px] shrink-0 rounded-3xl" />
+              <Skeleton className="w-[300px] h-[180px] shrink-0 rounded-3xl" />
+              <Skeleton className="w-[300px] h-[180px] shrink-0 rounded-3xl" />
+              <Skeleton className="w-[300px] h-[180px] shrink-0 rounded-3xl hidden md:block" />
+            </div>
+          }>
+            <CoursesSection />
+          </Suspense>
+        </section>
+
+        <section>
+          <ActivityTile />
+        </section>
+      </div>
     </DashboardShell>
   );
 }
