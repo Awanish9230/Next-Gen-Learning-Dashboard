@@ -40,7 +40,7 @@ export default function NotFound() {
         transition={{ delay: 0.4, duration: 0.6 }}
         className="text-gray-400 max-w-md mb-10 relative z-10 text-lg"
       >
-        The coordinates you entered don't exist in our learning database. Let's teleport you back to familiar territory.
+        The coordinates you entered don&apos;t exist in our learning database. Let&apos;s teleport you back to familiar territory.
       </motion.p>
 
       <motion.div

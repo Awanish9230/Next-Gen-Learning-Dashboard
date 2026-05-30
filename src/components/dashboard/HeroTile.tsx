@@ -23,7 +23,7 @@ export function HeroTile() {
             Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] to-[#8a2be2]">Explorer</span> 👋
           </h2>
           <p className="text-gray-400 text-lg md:text-xl max-w-xl mt-4">
-            You're in the top 5% of learners this week. Keep up the phenomenal momentum in the matrix!
+            You&apos;re in the top 5% of learners this week. Keep up the phenomenal momentum in the matrix!
           </p>
         </div>
 
